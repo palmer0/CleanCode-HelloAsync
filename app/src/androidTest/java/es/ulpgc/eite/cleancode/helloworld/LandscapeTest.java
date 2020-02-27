@@ -25,14 +25,15 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class LandscapeActivityInstrumentedTests {
+public class LandscapeTest {
 
   @Rule
   public ActivityTestRule<HelloActivity> mActivityTestRule =
       new ActivityTestRule<>(HelloActivity.class);
 
   @Test
-  public void helloActivityLandscapeTest() {
+  public void instrumentedTest() {
+
     ViewInteraction button10 = onView(allOf(
         withId(R.id.sayHelloButton), withText("Say Hello"), isDisplayed()));
     button10.perform(click());

@@ -21,14 +21,14 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class PortraitActivityInstrumentedTests {
+public class PortraitTest {
 
     @Rule
     public ActivityTestRule<HelloActivity> mActivityTestRule =
             new ActivityTestRule<>(HelloActivity.class);
 
     @Test
-    public void helloActivityPortraitTest() {
+    public void instrumentedTest() {
 
         ViewInteraction helloMessage1 = onView(
                 allOf(withId(R.id.helloMessage)));
