@@ -1,12 +1,11 @@
 package es.ulpgc.eite.cleancode.helloworld;
 
 
-import android.content.pm.ActivityInfo;
-
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
 import androidx.test.runner.AndroidJUnit4;
+import androidx.test.uiautomator.UiDevice;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -21,11 +20,15 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class LandscapeTest {
+
+  private static final long DELAY = 0;
+
 
   @Rule
   public ActivityTestRule<HelloActivity> mActivityTestRule =
@@ -94,9 +97,23 @@ public class LandscapeTest {
         withId(R.id.helloMessage), withText("Bye World!"), isDisplayed()));
     text4.check(matches(withText("Bye World!")));
 
+    try {
+
+      Thread.sleep(DELAY);
+
+      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      device.setOrientationLeft();
+
+      Thread.sleep(DELAY);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    /*
     mActivityTestRule.getActivity()
         .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+    */
 
     // Added a sleep statement to match the app's execution delay.
     try {
@@ -149,9 +166,23 @@ public class LandscapeTest {
     ViewInteraction text1 = onView(allOf(withId(R.id.helloMessage)));
     text1.check(matches(withText("")));
 
+    try {
+
+      Thread.sleep(DELAY);
+
+      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      device.setOrientationNatural();
+
+      Thread.sleep(DELAY);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    /*
     mActivityTestRule.getActivity()
         .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+    */
 
     // Added a sleep statement to match the app's execution delay.
     try {
@@ -178,9 +209,24 @@ public class LandscapeTest {
         withId(R.id.goByeButton), withText("Go Bye"), isDisplayed()));
     button9.perform(click());
 
+
+    try {
+
+      Thread.sleep(DELAY);
+
+      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      device.setOrientationLeft();
+
+      Thread.sleep(DELAY);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    /*
     mActivityTestRule.getActivity()
         .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+    */
 
     // Added a sleep statement to match the app's execution delay.
     try {
@@ -192,9 +238,23 @@ public class LandscapeTest {
     ViewInteraction text13 = onView(allOf(withId(R.id.byeMessage)));
     text13.check(matches(withText("")));
 
+    try {
+
+      Thread.sleep(DELAY);
+
+      UiDevice device = UiDevice.getInstance(getInstrumentation());
+      device.setOrientationNatural();
+
+      Thread.sleep(DELAY);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    /*
     mActivityTestRule.getActivity()
         .setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+    */
 
     // Added a sleep statement to match the app's execution delay.
     try {
