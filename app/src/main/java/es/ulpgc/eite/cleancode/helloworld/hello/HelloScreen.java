@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentActivity;
 
 import java.lang.ref.WeakReference;
 
-import es.ulpgc.eite.cleancode.helloworld.R;
 import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
 
 public class HelloScreen {
@@ -17,7 +16,8 @@ public class HelloScreen {
 
     //String message = context.get().getString(R.string.hello_message);
 
-    AppMediator mediator = (AppMediator) context.get().getApplication();
+    //AppMediator mediator = (AppMediator) context.get().getApplication();
+    AppMediator mediator = AppMediator.getInstance();
     HelloState state = mediator.getHelloState();
 
     HelloContract.Router router = new HelloRouter(mediator);

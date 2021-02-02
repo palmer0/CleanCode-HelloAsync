@@ -13,6 +13,7 @@ public interface HelloContract {
 
     void displayHelloData(HelloViewModel viewModel);
     void getHelloMessage(GetMessageAsyncTaskCallback callback);
+    void navigateToByeScreen();
   }
 
   interface Presenter {
@@ -34,6 +35,6 @@ public interface HelloContract {
 
     ByeToHelloState getDataFromByeScreen();
     void passDataToByeScreen(HelloToByeState state);
-    void navigateToByeScreen();
+    //void navigateToByeScreen();
   }
 }

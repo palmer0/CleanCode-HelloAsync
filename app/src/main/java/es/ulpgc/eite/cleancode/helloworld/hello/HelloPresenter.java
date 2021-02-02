@@ -104,7 +104,8 @@ public class HelloPresenter implements HelloContract.Presenter {
 
     HelloToByeState newState = new HelloToByeState(state.helloMessage);
     router.passDataToByeScreen(newState);
-    router.navigateToByeScreen();
+    //router.navigateToByeScreen();
+    view.get().navigateToByeScreen();
   }
 
 

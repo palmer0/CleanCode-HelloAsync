@@ -16,7 +16,8 @@ public class ByeScreen {
 
     //String message = context.get().getString(R.string.bye_message);
 
-    AppMediator mediator = (AppMediator) context.get().getApplication();
+    //AppMediator mediator = (AppMediator) context.get().getApplication();
+    AppMediator mediator = AppMediator.getInstance();
     ByeState state = mediator.getByeState();
 
     ByeContract.Router router = new ByeRouter(mediator);

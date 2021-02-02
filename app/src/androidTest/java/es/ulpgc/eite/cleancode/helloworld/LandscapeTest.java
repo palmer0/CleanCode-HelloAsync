@@ -23,6 +23,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.hamcrest.Matchers.allOf;
 
+@SuppressWarnings("ALL")
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class LandscapeTest {

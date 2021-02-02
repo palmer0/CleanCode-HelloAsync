@@ -1,12 +1,8 @@
 package es.ulpgc.eite.cleancode.helloworld.hello;
 
-import android.content.Context;
-import android.content.Intent;
-
 import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
 import es.ulpgc.eite.cleancode.helloworld.app.ByeToHelloState;
 import es.ulpgc.eite.cleancode.helloworld.app.HelloToByeState;
-import es.ulpgc.eite.cleancode.helloworld.bye.ByeActivity;
 
 
 public class HelloRouter implements HelloContract.Router {
@@ -35,12 +31,12 @@ public class HelloRouter implements HelloContract.Router {
     }
   }
 
-  @Override
-  public void navigateToByeScreen() {
-    Context context = mediator.getApplicationContext();
-    Intent intent = new Intent(context, ByeActivity.class);
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    context.startActivity(intent);
-  }
+//  @Override
+//  public void navigateToByeScreen() {
+//    Context context = mediator.getApplicationContext();
+//    Intent intent = new Intent(context, ByeActivity.class);
+//    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//    context.startActivity(intent);
+//  }
 
 }

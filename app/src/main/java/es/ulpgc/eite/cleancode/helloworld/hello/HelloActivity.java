@@ -1,5 +1,6 @@
 package es.ulpgc.eite.cleancode.helloworld.hello;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -11,7 +12,9 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import es.ulpgc.eite.cleancode.helloworld.R;
+import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
 import es.ulpgc.eite.cleancode.helloworld.app.GetMessageAsyncTaskCallback;
+import es.ulpgc.eite.cleancode.helloworld.bye.ByeActivity;
 
 
 public class HelloActivity
@@ -58,6 +61,10 @@ public class HelloActivity
     sayHelloButton.setText(getSayHelloButtonLabel());
     goByeButton.setText(getGoByeButtonLabel());
 
+    if(savedInstanceState == null){
+      AppMediator.resetInstance();
+    }
+
     // do the setup
     HelloScreen.configure(this);
 
@@ -72,6 +79,12 @@ public class HelloActivity
     presenter.onResumeCalled();
   }
 
+  @Override
+  public void navigateToByeScreen() {
+    Intent intent = new Intent(this, ByeActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
+  }
 
   @Override
   public void injectPresenter(HelloContract.Presenter presenter) {

@@ -19,6 +19,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.*;
 import static org.hamcrest.Matchers.allOf;
 
+@SuppressWarnings("ALL")
 @LargeTest
 @RunWith(AndroidJUnit4.class)
 public class PortraitTest {
