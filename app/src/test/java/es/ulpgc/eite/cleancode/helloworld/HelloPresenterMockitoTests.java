@@ -160,6 +160,7 @@ public class HelloPresenterMockitoTests {
     // and a hello message as passed state to ByePresenter
     configureHelloScreen(new HelloState());
     HelloToByeState state = new HelloToByeState(EMPTY_STRING);
+    AppMediator.getInstance().setHelloToByeState(state);
 
     // When start a new screen is requested
     presenter.goByeButtonClicked();
