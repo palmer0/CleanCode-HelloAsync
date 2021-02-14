@@ -42,9 +42,6 @@ public class HelloPresenterMockitoTests {
   @Mock
   private HelloContract.View viewMock;
 
-//  @Mock
-//  private HelloContract.Router routerMock;
-
   private HelloContract.Presenter presenter;
 
 
