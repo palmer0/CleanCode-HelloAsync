@@ -14,7 +14,6 @@ public class HelloPresenter implements HelloContract.Presenter {
   private WeakReference<HelloContract.View> view;
   private HelloState state;
   private HelloContract.Model model;
-  //private HelloContract.Router router;
   private AppMediator mediator;
 
   public HelloPresenter(AppMediator mediator) {
@@ -22,9 +21,6 @@ public class HelloPresenter implements HelloContract.Presenter {
     state = mediator.getHelloState();
   }
 
-//  public HelloPresenter(HelloState state) {
-//    this.state = state;
-//  }
 
   @Override
   public void injectView(WeakReference<HelloContract.View> view) {
@@ -36,16 +32,11 @@ public class HelloPresenter implements HelloContract.Presenter {
     this.model = model;
   }
 
-//  @Override
-//  public void injectRouter(HelloContract.Router router) {
-//    this.router = router;
-//  }
 
   @Override
   public void onResumeCalled() {
     //Log.e(TAG, "onResumeCalled()");
 
-    //ByeToHelloState savedState = router.getDataFromByeScreen();
     ByeToHelloState savedState = getDataFromByeScreen();
     if(savedState != null){
 
@@ -125,9 +116,7 @@ public class HelloPresenter implements HelloContract.Presenter {
     //Log.e(TAG, "goByeButtonClicked()");
 
     HelloToByeState newState = new HelloToByeState(state.helloMessage);
-    //router.passDataToByeScreen(newState);
-    //passDataToByeScreen(newState);
-    //router.navigateToByeScreen();
+    passDataToByeScreen(newState);
     view.get().navigateToByeScreen();
   }
 

@@ -17,7 +17,6 @@ public interface HelloContract {
   interface Presenter {
     void injectView(WeakReference<View> view);
     void injectModel(Model model);
-    //void injectRouter(Router router);
 
     void onResumeCalled();
     void sayHelloButtonClicked();
@@ -29,12 +28,4 @@ public interface HelloContract {
     void setHelloMessage(String message);
   }
 
-  /*
-  interface Router {
-
-    ByeToHelloState getDataFromByeScreen();
-    void passDataToByeScreen(HelloToByeState state);
-    //void navigateToByeScreen();
-  }
-  */
 }

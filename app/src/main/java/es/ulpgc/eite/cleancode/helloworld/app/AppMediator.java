@@ -31,17 +31,6 @@ public class AppMediator {
     return INSTANCE;
   }
 
-
-  /*
-  @Override
-  public void onCreate() {
-    super.onCreate();
-
-    helloState = new HelloState();
-    byeState = new ByeState();
-  }
-  */
-
   public ByeState getByeState() {
     return byeState;
   }
