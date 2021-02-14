@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
 import es.ulpgc.eite.cleancode.helloworld.app.ByeToHelloState;
 import es.ulpgc.eite.cleancode.helloworld.app.GetMessageAsyncTaskCallback;
 import es.ulpgc.eite.cleancode.helloworld.app.HelloToByeState;
@@ -16,12 +17,19 @@ public class ByePresenter implements ByeContract.Presenter {
   private WeakReference<ByeContract.View> view;
   private ByeState state;
   private ByeContract.Model model;
-  private ByeContract.Router router;
+  //private ByeContract.Router router;
+  private AppMediator mediator;
 
+  public ByePresenter(AppMediator mediator) {
+    this.mediator = mediator;
+    state = mediator.getByeState();
+  }
 
+  /*
   public ByePresenter(ByeState state) {
     this.state = state;
   }
+  */
 
   @Override
   public void injectView(WeakReference<ByeContract.View> view) {
@@ -33,16 +41,26 @@ public class ByePresenter implements ByeContract.Presenter {
     this.model = model;
   }
 
-  @Override
-  public void injectRouter(ByeContract.Router router) {
-    this.router = router;
+//  @Override
+//  public void injectRouter(ByeContract.Router router) {
+//    this.router = router;
+//  }
+
+  private HelloToByeState getDataFromHelloScreen() {
+    return mediator.getHelloToByeState();
+  }
+
+  private void passDataToHelloScreen(ByeToHelloState state) {
+
+    mediator.setByeToHelloState(state);
   }
 
   @Override
   public void onResumeCalled() {
     Log.e(TAG, "onResumeCalled()");
 
-    HelloToByeState savedState = router.getDataFromHelloScreen();
+    //HelloToByeState savedState = router.getDataFromHelloScreen();
+    HelloToByeState savedState = getDataFromHelloScreen();
     if(savedState != null){
 
       // set passed state
@@ -105,7 +123,8 @@ public class ByePresenter implements ByeContract.Presenter {
   @Override
   public void goHelloButtonClicked() {
     ByeToHelloState newState = new ByeToHelloState(state.byeMessage);
-    router.passDataToHelloScreen(newState);
+    //router.passDataToHelloScreen(newState);
+    passDataToHelloScreen(newState);
     view.get().finishView();
   }
 }

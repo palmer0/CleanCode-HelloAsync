@@ -2,6 +2,7 @@ package es.ulpgc.eite.cleancode.helloworld.hello;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
 import es.ulpgc.eite.cleancode.helloworld.app.ByeToHelloState;
 import es.ulpgc.eite.cleancode.helloworld.app.GetMessageAsyncTaskCallback;
 import es.ulpgc.eite.cleancode.helloworld.app.HelloToByeState;
@@ -13,11 +14,17 @@ public class HelloPresenter implements HelloContract.Presenter {
   private WeakReference<HelloContract.View> view;
   private HelloState state;
   private HelloContract.Model model;
-  private HelloContract.Router router;
+  //private HelloContract.Router router;
+  private AppMediator mediator;
 
-  public HelloPresenter(HelloState state) {
-    this.state = state;
+  public HelloPresenter(AppMediator mediator) {
+    this.mediator = mediator;
+    state = mediator.getHelloState();
   }
+
+//  public HelloPresenter(HelloState state) {
+//    this.state = state;
+//  }
 
   @Override
   public void injectView(WeakReference<HelloContract.View> view) {
@@ -29,16 +36,17 @@ public class HelloPresenter implements HelloContract.Presenter {
     this.model = model;
   }
 
-  @Override
-  public void injectRouter(HelloContract.Router router) {
-    this.router = router;
-  }
+//  @Override
+//  public void injectRouter(HelloContract.Router router) {
+//    this.router = router;
+//  }
 
   @Override
   public void onResumeCalled() {
     //Log.e(TAG, "onResumeCalled()");
 
-    ByeToHelloState savedState = router.getDataFromByeScreen();
+    //ByeToHelloState savedState = router.getDataFromByeScreen();
+    ByeToHelloState savedState = getDataFromByeScreen();
     if(savedState != null){
 
       // set passed state
@@ -98,12 +106,27 @@ public class HelloPresenter implements HelloContract.Presenter {
 
   }
 
+  private ByeToHelloState getDataFromByeScreen() {
+    if (mediator != null) {
+      return mediator.getByeToHelloState();
+    }
+
+    return null;
+  }
+
+  private void passDataToByeScreen(HelloToByeState state) {
+    if (mediator != null) {
+      mediator.setHelloToByeState(state);
+    }
+  }
+
   @Override
   public void goByeButtonClicked() {
     //Log.e(TAG, "goByeButtonClicked()");
 
     HelloToByeState newState = new HelloToByeState(state.helloMessage);
-    router.passDataToByeScreen(newState);
+    //router.passDataToByeScreen(newState);
+    //passDataToByeScreen(newState);
     //router.navigateToByeScreen();
     view.get().navigateToByeScreen();
   }
