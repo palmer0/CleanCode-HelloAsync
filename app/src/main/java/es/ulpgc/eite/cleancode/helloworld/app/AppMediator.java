@@ -46,6 +46,10 @@ public class AppMediator {
     return byeState;
   }
 
+  public void setHelloState(HelloState state) {
+    helloState = state;
+  }
+
   public HelloState getHelloState() {
     return helloState;
   }

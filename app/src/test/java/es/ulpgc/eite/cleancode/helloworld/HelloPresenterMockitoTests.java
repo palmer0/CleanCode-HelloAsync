@@ -11,6 +11,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.lang.ref.WeakReference;
 
+import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
 import es.ulpgc.eite.cleancode.helloworld.app.ByeToHelloState;
 import es.ulpgc.eite.cleancode.helloworld.app.GetMessageAsyncTaskCallback;
 import es.ulpgc.eite.cleancode.helloworld.app.HelloToByeState;
@@ -23,7 +24,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class HelloPresenterMockitoTests {
@@ -42,8 +42,8 @@ public class HelloPresenterMockitoTests {
   @Mock
   private HelloContract.View viewMock;
 
-  @Mock
-  private HelloContract.Router routerMock;
+//  @Mock
+//  private HelloContract.Router routerMock;
 
   private HelloContract.Presenter presenter;
 
@@ -55,14 +55,18 @@ public class HelloPresenterMockitoTests {
     MockitoAnnotations.initMocks(this);
   }
 
+
   private void configureHelloScreen(HelloState state) {
 
     // Get a reference to the class under test
-    presenter = new HelloPresenter(state);
+    AppMediator mediator = AppMediator.getInstance();
+    mediator.setHelloState(state);
+    presenter = new HelloPresenter(mediator);
+    //presenter = new HelloPresenter(state);
 
     presenter.injectView(new WeakReference<>(viewMock));
     presenter.injectModel(modelMock);
-    presenter.injectRouter(routerMock);
+    //presenter.injectRouter(routerMock);
   }
 
   @Test
@@ -71,7 +75,7 @@ public class HelloPresenterMockitoTests {
     // and a null state passed from ByePresenter
     // and a new state is generated including a empty message
     configureHelloScreen(new HelloState());
-    when(routerMock.getDataFromByeScreen()).thenReturn(null);
+    //when(routerMock.getDataFromByeScreen()).thenReturn(null);
 
     HelloState viewModel = new HelloState();
     viewModel.progressBarVisibility = false;
@@ -92,8 +96,8 @@ public class HelloPresenterMockitoTests {
     // and a new state is generated including a bye message
     configureHelloScreen(new HelloState());
     ByeToHelloState state = new ByeToHelloState(BYE_STRING);
-    when(routerMock.getDataFromByeScreen()).thenReturn(state);
-
+    //when(routerMock.getDataFromByeScreen()).thenReturn(state);
+    AppMediator.getInstance().setByeToHelloState(state);
     HelloState viewModel = new HelloState();
     viewModel.progressBarVisibility = false;
     viewModel.helloMessage = BYE_STRING;
@@ -122,7 +126,7 @@ public class HelloPresenterMockitoTests {
 
     // Then progress indicator is not hidden and empty message is shown in UI
     verify(viewMock).displayHelloData(viewModel);
-    verify(routerMock, never()).getDataFromByeScreen();
+    //verify(routerMock, never()).getDataFromByeScreen();
   }
 
   @Test
@@ -146,7 +150,7 @@ public class HelloPresenterMockitoTests {
 
     // Then progress indicator is hidden and message is shown in UI
     verify(viewMock, times(2)).displayHelloData(viewModel);
-    verify(routerMock, never()).getDataFromByeScreen();
+    //verify(routerMock, never()).getDataFromByeScreen();
 
   }
 
@@ -162,9 +166,9 @@ public class HelloPresenterMockitoTests {
 
 
     // Then router is called to pass the state and start the new screen
-    verify(routerMock, times(1)).passDataToByeScreen(state);
-    verify(routerMock, times(1)).navigateToByeScreen();
-    verify(routerMock, never()).getDataFromByeScreen();
+//    verify(routerMock, times(1)).passDataToByeScreen(state);
+//    verify(routerMock, times(1)).navigateToByeScreen();
+//    verify(routerMock, never()).getDataFromByeScreen();
     verify(viewMock, never()).displayHelloData(any(HelloViewModel.class));
 
   }
@@ -180,7 +184,7 @@ public class HelloPresenterMockitoTests {
     state.helloMessage = EMPTY_STRING;
 
     configureHelloScreen(state);
-    when(routerMock.getDataFromByeScreen()).thenReturn(null);
+    //when(routerMock.getDataFromByeScreen()).thenReturn(null);
 
     HelloState viewModel = new HelloState();
     viewModel.progressBarVisibility = false;
