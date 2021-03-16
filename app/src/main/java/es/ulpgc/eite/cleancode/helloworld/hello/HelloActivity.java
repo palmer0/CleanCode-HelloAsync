@@ -86,10 +86,6 @@ public class HelloActivity
     startActivity(intent);
   }
 
-  @Override
-  public void injectPresenter(HelloContract.Presenter presenter) {
-    this.presenter = presenter;
-  }
 
   @Override
   public void displayHelloData(HelloViewModel viewModel) {
@@ -139,4 +135,8 @@ public class HelloActivity
     return getResources().getString(R.string.say_hello_button_label);
   }
 
+  @Override
+  public void injectPresenter(HelloContract.Presenter presenter) {
+    this.presenter = presenter;
+  }
 }

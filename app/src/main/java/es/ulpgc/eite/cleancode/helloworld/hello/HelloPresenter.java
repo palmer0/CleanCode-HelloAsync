@@ -23,17 +23,6 @@ public class HelloPresenter implements HelloContract.Presenter {
 
 
   @Override
-  public void injectView(WeakReference<HelloContract.View> view) {
-    this.view = view;
-  }
-
-  @Override
-  public void injectModel(HelloContract.Model model) {
-    this.model = model;
-  }
-
-
-  @Override
   public void onResumeCalled() {
     //Log.e(TAG, "onResumeCalled()");
 
@@ -115,5 +104,13 @@ public class HelloPresenter implements HelloContract.Presenter {
     view.get().navigateToByeScreen();
   }
 
+  @Override
+  public void injectView(WeakReference<HelloContract.View> view) {
+    this.view = view;
+  }
 
+  @Override
+  public void injectModel(HelloContract.Model model) {
+    this.model = model;
+  }
 }

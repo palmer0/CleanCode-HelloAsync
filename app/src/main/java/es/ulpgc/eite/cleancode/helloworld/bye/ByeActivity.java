@@ -71,10 +71,6 @@ public class ByeActivity
     presenter.onResumeCalled();
   }
 
-  @Override
-  public void injectPresenter(ByeContract.Presenter presenter) {
-    this.presenter = presenter;
-  }
 
   @Override
   public void displayByeData(ByeViewModel viewModel) {
@@ -128,4 +124,9 @@ public class ByeActivity
     return getResources().getString(R.string.say_bye_button_label);
   }
 
+
+  @Override
+  public void injectPresenter(ByeContract.Presenter presenter) {
+    this.presenter = presenter;
+  }
 }
