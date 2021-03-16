@@ -98,18 +98,13 @@ public class HelloPresenter implements HelloContract.Presenter {
   }
 
   private ByeToHelloState getDataFromByeScreen() {
-    if (mediator != null) {
-      return mediator.getByeToHelloState();
-    }
-
-    return null;
+    return mediator.getByeToHelloState();
   }
 
   private void passDataToByeScreen(HelloToByeState state) {
-    if (mediator != null) {
-      mediator.setHelloToByeState(state);
-    }
+    mediator.setHelloToByeState(state);
   }
+
 
   @Override
   public void goByeButtonClicked() {
