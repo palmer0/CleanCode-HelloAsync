@@ -22,6 +22,10 @@ public interface ByeContract {
     void onResumeCalled();
     void sayByeButtonClicked();
     void goHelloButtonClicked();
+
+    void onPauseCalled();
+
+    void onDestroyCalled();
   }
 
   interface Model {

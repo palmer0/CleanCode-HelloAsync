@@ -21,6 +21,10 @@ public interface HelloContract {
     void onResumeCalled();
     void sayHelloButtonClicked();
     void goByeButtonClicked();
+
+    void onPauseCalled();
+
+    void onDestroyCalled();
   }
 
   interface Model {

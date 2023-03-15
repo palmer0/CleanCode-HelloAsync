@@ -53,6 +53,18 @@ public class ByePresenter implements ByeContract.Presenter {
 
   }
 
+  @Override
+  public void onPauseCalled() {
+    Log.e(TAG, "onPauseCalled()");
+
+  }
+
+  @Override
+  public void onDestroyCalled() {
+    Log.e(TAG, "onDestroyCalled()");
+
+  }
+
   private void startByeMessageAsyncTask() {
     Log.e(TAG, "startByeMessageAsyncTask()");
 

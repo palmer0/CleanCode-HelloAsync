@@ -1,5 +1,7 @@
 package es.ulpgc.eite.cleancode.helloworld.hello;
 
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
 
 import es.ulpgc.eite.cleancode.helloworld.app.AppMediator;
@@ -38,6 +40,18 @@ public class HelloPresenter implements HelloContract.Presenter {
     if(state.progressBarVisibility) {
       startHelloMessageAsyncTask();
     }
+  }
+
+  @Override
+  public void onPauseCalled() {
+    Log.e(TAG, "onPauseCalled()");
+
+  }
+
+  @Override
+  public void onDestroyCalled() {
+    Log.e(TAG, "onDestroyCalled()");
+
   }
 
   private void startHelloMessageAsyncTask() {

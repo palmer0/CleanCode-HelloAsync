@@ -80,6 +80,23 @@ public class HelloActivity
   }
 
   @Override
+  protected void onPause() {
+    super.onPause();
+
+    // do some work
+    presenter.onPauseCalled();
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+
+    // do some work
+    presenter.onDestroyCalled();
+  }
+
+
+  @Override
   public void navigateToByeScreen() {
     Intent intent = new Intent(this, ByeActivity.class);
     //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

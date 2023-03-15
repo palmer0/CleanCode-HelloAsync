@@ -71,6 +71,21 @@ public class ByeActivity
     presenter.onResumeCalled();
   }
 
+  @Override
+  protected void onPause() {
+    super.onPause();
+
+    // do some work
+    presenter.onPauseCalled();
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+
+    // do some work
+    presenter.onDestroyCalled();
+  }
 
   @Override
   public void displayByeData(ByeViewModel viewModel) {
