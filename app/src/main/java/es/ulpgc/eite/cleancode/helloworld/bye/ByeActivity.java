@@ -26,6 +26,7 @@ public class ByeActivity
   ProgressBar progressBar;
 
   private boolean running;
+  private Handler handler;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +88,16 @@ public class ByeActivity
     presenter.onDestroyCalled();
   }
 
+
+  /*
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+
+    handler.removeMessages(0);
+  }
+  */
+
   @Override
   public void displayByeData(ByeViewModel viewModel) {
     Log.e(TAG, "displayByeData()");
@@ -108,6 +119,29 @@ public class ByeActivity
 
     running = true;
 
+    handler = new Handler();
+
+    Runnable task = new Runnable() {
+
+      @Override
+      public void run() {
+        // Execute async code
+
+        String message = getString(R.string.bye_message);
+
+        if (callback != null) {
+          callback.onGetMessageAsyncTaskFinished(message);
+        }
+
+        running = false;
+
+      }
+    };
+
+    handler.postDelayed(task, 5000);
+
+
+    /*
     new Handler().postDelayed(new Runnable() {
 
       @Override
@@ -124,10 +158,13 @@ public class ByeActivity
 
       }
     }, 5000);
+
+    */
   }
 
   @Override
   public void finishView() {
+    handler.removeMessages(0);
     finish();
   }
 

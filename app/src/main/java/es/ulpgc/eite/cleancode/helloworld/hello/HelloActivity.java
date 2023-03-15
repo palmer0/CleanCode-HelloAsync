@@ -29,6 +29,7 @@ public class HelloActivity
   ProgressBar progressBar;
 
   private boolean running;
+  private Handler handler;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +96,14 @@ public class HelloActivity
     presenter.onDestroyCalled();
   }
 
+  /*
+  @Override
+  public void onBackPressed() {
+    super.onBackPressed();
+
+    handler.removeMessages(0);
+  }
+  */
 
   @Override
   public void navigateToByeScreen() {
@@ -124,6 +133,28 @@ public class HelloActivity
 
     running = true;
 
+    handler = new Handler();
+
+    Runnable task = new Runnable() {
+
+      @Override
+      public void run() {
+        // Execute async code
+
+        String message = getString(R.string.hello_message);
+
+        if (callback != null) {
+          callback.onGetMessageAsyncTaskFinished(message);
+        }
+
+        running = false;
+
+      }
+    };
+
+    handler.postDelayed(task, 5000);
+
+    /*
     new Handler().postDelayed(new Runnable() {
 
       @Override
@@ -140,7 +171,7 @@ public class HelloActivity
 
       }
     }, 5000);
-
+    */
   }
 
 
